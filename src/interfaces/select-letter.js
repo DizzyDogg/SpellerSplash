@@ -7,7 +7,7 @@ export default class SelectLetter {
 
             this.listenForKeyPress = true; // state flag on when to check for keypresses
 
-            this.events = new Phaser.EventEmitter(); // so we can emit a keypress event
+            this.events = Phaser.Events ? new Phaser.Events.EventEmitter() : new Phaser.EventEmitter(); // so we can emit a keypress event
 
             this.timerEvent; // for tracking our delay timer
 
