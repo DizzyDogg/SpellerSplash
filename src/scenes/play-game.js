@@ -23,7 +23,7 @@ export default class PlayGameScene extends Phaser.Scene {
         //     method: 'GET',
         //     headers:{
         //         'Content-Type': 'application/json'
-        //     } 
+        //     }
         // }).then(res => res.json())
         // .catch(error => console.error('Error:', error))
         // .then(response => console.log('Success:', response[0].fileUrl));
@@ -50,7 +50,7 @@ export default class PlayGameScene extends Phaser.Scene {
                     method: 'GET',
                     headers:{
                         'Content-Type': 'application/json'
-                    } 
+                    }
                 }).then(res => res.json())
                 .catch(error => console.error('Error:', error))
                 .then(response => { this.sys.registry.set('def-'+word, response[0].text) });
