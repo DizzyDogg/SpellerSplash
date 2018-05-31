@@ -35,7 +35,7 @@ export default class CreditsScene extends Phaser.Scene {
         })
 
         var phaserLogo = this.add.image(centerX, 300, 'phaser3-logo');
-	phaserLogo.setScale(0.5);
+        phaserLogo.setScale(0.5);
         phaserLogo.setInteractive();
         phaserLogo.on('pointerdown', () => {
             this.input.stopPropagation();
