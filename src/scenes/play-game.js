@@ -35,7 +35,6 @@ export default class PlayGameScene extends Phaser.Scene {
         this.load.audio('loser', 'timeup.mp3');
     }
 
-
     init (data) {
         this.selectLetter = new SelectLetter(this);
         this.grade = data.grade;
@@ -153,7 +152,7 @@ export default class PlayGameScene extends Phaser.Scene {
         console.log('displayWord()' + word);
         // TODO: potentially need to consider blowing away the old letters
         this.currentWord = this.wordImg.createWord(word);
-        this.currentWord.setPosition(this.centerX, this.centerY - 50);
+        this.currentWord.setPosition(centerX, centerY - 50);
         console.log(centerX, centerY - 50);
         this.currentWord.setScale(0.3);
     }
