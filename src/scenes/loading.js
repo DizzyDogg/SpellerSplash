@@ -10,8 +10,6 @@
 // require('../../assets/sounds/sound.wav');
 // require('../../assets/json/tilemap.json');
 // require('../../assets/images/tileset.png');
-require('../../assets/images/play.png');
-require('../../assets/images/credits.png');
 require('../../assets/spritesheets/blue_letters.png');
 require('../../assets/spritesheets/blue_letters.json');
 //require('../../assets/spritesheets/blue_letters.xml');
