@@ -7,8 +7,6 @@ export default class MainMenuScene extends Phaser.Scene {
 
     preload () {
         // load all the resources required for this scene before using them
-        this.load.image('play_button', 'play.png');
-        this.load.image('credits_button', 'credits.png');
         this.load.atlas('letters', 'blue_letters.png', 'blue_letters.json');
     }
 
