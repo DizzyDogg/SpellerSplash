@@ -93,6 +93,9 @@ export default class PlayGameScene extends Phaser.Scene {
         this.wordChecker.events.on('guessFail', (wordSoFar) => {
             console.log("fail: " + wordSoFar);
         });
+        this.wordChecker.events.on('winWord', (word) => {
+            console.log('You spelled ' + word + ' correctly!');
+        }
 
         let audioButton = this.make.image({ x: this.sys.game.config.width - 50, y: 50, key: 'audio_button' });
         let defButton = this.make.image({ x: this.sys.game.config.width - 150, y: 50, key: 'def_button' });

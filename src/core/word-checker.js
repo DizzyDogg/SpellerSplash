@@ -14,6 +14,9 @@ export default class WordChecker {
         if (actualLetter.match(letter)) {
             this.progress++;
             this.events.emit('guessCorrect', this.get_word_progress());
+            if (this.progress === this.word.length) { // Win condition
+                this.events.emit('winWord', this.word);
+            }
         }
         else {
             this.events.emit('guessFail', this.get_word_progress());
