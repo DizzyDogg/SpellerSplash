@@ -31,6 +31,7 @@ export default class PlayGameScene extends Phaser.Scene {
 
         this.load.image('audio_button', 'audio.png');
         this.load.image('def_button', 'dictionary.png');
+        this.load.audio('loser', 'timeup.mp3');
     }
 
     init (data) {
@@ -73,6 +74,9 @@ export default class PlayGameScene extends Phaser.Scene {
     showTimer (textObj, secondsLeft) {
         if (secondsLeft > 0) {
             this.time.delayedCall(1000, this.showTimer, [textObj, secondsLeft-1], this);
+        }
+        else {
+            this.sound.play('loser');
         }
         textObj.setText(secondsLeft);
     }
