@@ -41,6 +41,10 @@ export default class PlayGameScene extends Phaser.Scene {
         this.grade = data.grade;
         this.timeLeft = 100;
         this.wordImg = new WordFactory(this);
+        this.won = 0;
+        this.word = this.wordPicker();
+        console.log('Your word is: '+this.word);
+        this.wordChecker = new WordChecker(this.word,this);
     }
 
     wordPicker() {
@@ -78,10 +82,11 @@ export default class PlayGameScene extends Phaser.Scene {
         this.wordDefinition.setText(data);
     }
 
-    showTimer (textObj) {
-        textObj.setText(this.timeLeft);
+    showTimer () {
+        if (this.won) return;
+        this.timerText.setText(this.timeLeft);
         if (this.timeLeft > 0) {
-            this.time.delayedCall(1000, this.showTimer, [textObj], this);
+            this.time.delayedCall(1000, this.showTimer, [], this);
             this.timeLeft--;
         }
         else {
@@ -96,8 +101,8 @@ export default class PlayGameScene extends Phaser.Scene {
         let title = this.add.text( centerX, 100, 'Play Scene', {fontFamily: 'Arial', fontSize: 32, color: '#f00'}).setOrigin(0.5);
         let title1 = this.add.text( centerX, 200, this.grade + ' grade', {fontFamily: 'Arial', fontSize: 32, color: '#f00'}).setOrigin(0.5);
         let mainMenu = this.add.text( centerX, 300, 'Main Menu', {fontFamily: 'Arial', fontSize: 32, color: '#f00'}).setOrigin(0.5);
-        let timerText = this.add.text( 20, 20, "Loading", {fontFamily: 'Arial', fontSize: 32, color: '#f00'} );
-        this.showTimer(timerText);
+        this.timerText = this.add.text( 20, 20, "Loading", {fontFamily: 'Arial', fontSize: 32, color: '#f00'} );
+        this.showTimer();
         mainMenu.setInteractive();
         mainMenu.on('pointerdown', () => {
             this.input.stopPropagation();
@@ -115,6 +120,7 @@ export default class PlayGameScene extends Phaser.Scene {
             console.log("fail: " + wordSoFar);
         });
         this.wordChecker.events.on('winWord', (word) => {
+            this.won = 1;
             console.log('You spelled ' + word + ' correctly!');
         });
 
