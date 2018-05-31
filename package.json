@@ -21,14 +21,14 @@
   },
   "homepage": "https://github.com/[account]/[project]#readme",
   "dependencies": {
+    "@capacitor/android": "^1.0.0-alpha.38",
+    "@capacitor/cli": "^1.0.0-alpha.38",
+    "@capacitor/core": "^1.0.0-alpha.38",
     "lodash": "^4.17.4",
     "phaser": "^3.7.1",
     "webfontloader": "^1.6.28"
   },
   "devDependencies": {
-    "@capacitor/android": "^1.0.0-alpha.38",
-    "@capacitor/cli": "^1.0.0-alpha.38",
-    "@capacitor/core": "^1.0.0-alpha.38",
     "audiosprite": "^0.6.0",
     "babel-core": "^6.25.0",
     "babel-loader": "^7.0.0",

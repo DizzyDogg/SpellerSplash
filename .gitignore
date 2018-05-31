@@ -52,3 +52,6 @@ package-lock.json
 
 # ignore gradle hidden settings
 .gradle
+
+# ignore android project
+android

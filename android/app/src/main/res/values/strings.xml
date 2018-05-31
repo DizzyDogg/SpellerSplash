@@ -1,8 +1,0 @@
-<?xml version='1.0' encoding='utf-8'?>
-<resources>
-    <string name="app_name">Speller Splash</string>
-    <string name="title_activity_main">Speller Splash</string>
-    <string name="package_name">com.dizzydog.speller_splash</string>
-    <string name="fileprovider_authority">com.dizzydog.speller_splash.fileprovider</string>
-    <string name="custom_url_scheme">com.dizzydog.speller_splash</string>
-</resources>
