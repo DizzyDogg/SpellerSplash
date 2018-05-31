@@ -42,9 +42,6 @@ export default class PlayGameScene extends Phaser.Scene {
         this.timeLeft = 100;
         this.wordImg = new WordFactory(this);
         this.won = 0;
-        this.word = this.wordPicker();
-        console.log('Your word is: '+this.word);
-        this.wordChecker = new WordChecker(this.word,this);
     }
 
     wordPicker() {
@@ -113,16 +110,6 @@ export default class PlayGameScene extends Phaser.Scene {
             console.log(key);
             this.wordChecker.guess(key);
         });
-        this.wordChecker.events.on('guessCorrect', (wordSoFar) => {
-            console.log("correct: " + wordSoFar);
-        });
-        this.wordChecker.events.on('guessFail', (wordSoFar) => {
-            console.log("fail: " + wordSoFar);
-        });
-        this.wordChecker.events.on('winWord', (word) => {
-            this.won = 1;
-            console.log('You spelled ' + word + ' correctly!');
-        });
 
         let audioButton = this.make.image({ x: this.sys.game.config.width - 50, y: 50, key: 'audio_button' });
         let defButton = this.make.image({ x: this.sys.game.config.width - 150, y: 50, key: 'def_button' });
@@ -137,11 +124,23 @@ export default class PlayGameScene extends Phaser.Scene {
         this.wordDefinition = this.add.text( 10, this.sys.game.config.height-80, '', {fontFamily: 'Arial', fontSize: 20, color: '#f00'});
         this.registry.events.on('changedata', this.setDef, this);
     }
-    
+
     newWord () {
         let word = this.wordPicker();
         console.log('Your word is: '+ word);
         this.wordChecker = new WordChecker(word, this);
+
+        this.wordChecker.events.on('guessCorrect', (wordSoFar) => {
+            console.log("correct: " + wordSoFar);
+        });
+        this.wordChecker.events.on('guessFail', (wordSoFar) => {
+            console.log("fail: " + wordSoFar);
+        });
+        this.wordChecker.events.on('winWord', (word) => {
+            this.won++;
+            console.log('You spelled ' + word + ' correctly!');
+            this.newWord();
+        });
 
         let progress = this.wordChecker.get_word_progress();
         this.displayWord(progress);
