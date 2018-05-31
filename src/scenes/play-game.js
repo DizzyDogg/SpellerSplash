@@ -1,3 +1,5 @@
+import SelectLetter from '../interfaces/select-letter';
+
 export default class PlayGameScene extends Phaser.Scene {
     constructor (config, key = 'PlayGame') {
         super({ key: key });
@@ -8,9 +10,13 @@ export default class PlayGameScene extends Phaser.Scene {
     }
 
     init () {
+        this.selectLetter = new SelectLetter(this);
     }
 
     create () {
+        this.selectLetter.events.on('keypress', (key) => {
+            console.log(key);
+        });
     }
 
     update () {
