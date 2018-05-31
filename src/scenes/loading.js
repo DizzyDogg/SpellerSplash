@@ -17,6 +17,7 @@ require('../../assets/spritesheets/blue_letters.json');
 //require('../../assets/spritesheets/blue_letters.xml');
 require('../../assets/images/kenney-logo.png');
 require('../../assets/images/phaser3-logo.png');
+require('../../assets/images/wordnik-logo.png');
 
 export default class LoadingScene extends Phaser.Scene {
     constructor (config, key = 'Loading') {
