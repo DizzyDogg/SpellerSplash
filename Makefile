@@ -2,6 +2,8 @@
 
 NPM = $(shell which npm || echo "npm")
 
+ANDROID_APP_IML = android/app/app.iml
+
 all: node_modules
 
 start: node_modules
@@ -10,9 +12,11 @@ start: node_modules
 stop:
 	killall npm
 
-android: dist
-	rm -rf android
+$(ANDROID_APP_IML):
 	npx cap add android
+
+run_android: dist $(ANDROID_APP_IML)
+	npx cap copy android
 	npx cap open android
 
 dist: node_modules
@@ -49,4 +53,4 @@ INSTALL_OSX:
 	@echo Installing npm ...
 	@which npm || brew install node
 
-.PHONY: all start stop dist dist_compressed node_modules clean
+.PHONY: all start stop dist dist_compressed node_modules clean run_android
