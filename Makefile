@@ -13,6 +13,7 @@ stop:
 android: dist
 	rm -rf android
 	npx cap add android
+	npx cap open android
 
 dist: node_modules
 	rm -rf dist
