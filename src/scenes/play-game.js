@@ -1,5 +1,6 @@
 import SelectLetter from '../interfaces/select-letter';
 import WordChecker from '../core/word-checker';
+import GradeWordList from '../config/wordlist.json';
 
 export default class PlayGameScene extends Phaser.Scene {
     constructor (config, key = 'PlayGame') {
@@ -9,8 +10,7 @@ export default class PlayGameScene extends Phaser.Scene {
     preload () {
         // load all the resources required for this scene before using them
         let apiKey = '&api_key=45ac016abb9c08d154008021412018f92ba8ecb481d9fb74c';
-        let word = 'kitchen';
-        let apiURL = "https://api.wordnik.com/v4/word.json/"+word;
+        let apiURL = "https://api.wordnik.com/v4/word.json/"+this.word;
         let apiAudioURL = apiURL+"/audio?useCanonical=false&limit=50"+apiKey;
         let apiDefURL = apiURL+"/useCanonical=false&includeSuggestions=true"+apiKey;
 
@@ -34,11 +34,19 @@ export default class PlayGameScene extends Phaser.Scene {
         this.load.audio('loser', 'timeup.mp3');
     }
 
+
     init (data) {
         this.selectLetter = new SelectLetter(this);
-        this.wordChecker = new WordChecker('kitchen',this);
         this.grade = data.grade;
         this.timeLeft = 10;
+        this.word = this.wordPicker();
+        console.log('Your word is: '+this.word);
+        this.wordChecker = new WordChecker(this.word,this);
+    }
+
+    wordPicker() {
+        let myWordList = GradeWordList["grade"+this.grade];
+        return myWordList[Math.floor(Math.random()*myWordList.length)];
     }
 
     wordnik(apiType, word) {
@@ -68,7 +76,6 @@ export default class PlayGameScene extends Phaser.Scene {
     }
 
     setDef (parent, key, data) {
-
         this.wordDefinition.setText(data);
     }
 
@@ -83,8 +90,11 @@ export default class PlayGameScene extends Phaser.Scene {
         }
     }
 
+    getRandomWord () {
+    }
+
     create () {
-        let myWord = 'kitchen';
+        let myWord = this.word;
         let centerX = this.sys.game.config.width / 2;
         let centerY = this.sys.game.config.height / 2;
         let title = this.add.text( centerX, 100, 'Play Scene', {fontFamily: 'Arial', fontSize: 32, color: '#f00'}).setOrigin(0.5);
@@ -116,7 +126,7 @@ export default class PlayGameScene extends Phaser.Scene {
         let defButton = this.make.image({ x: this.sys.game.config.width - 150, y: 50, key: 'def_button' });
         audioButton.setInteractive();
         audioButton.on('pointerdown', () => {
-            this.wordnik('audio','kitchen');
+            this.wordnik('audio',this.word);
         });
         defButton.setInteractive();
         defButton.on('pointerdown', () => {
