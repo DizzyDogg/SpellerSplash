@@ -11,6 +11,7 @@
 // require('../../assets/json/tilemap.json');
 // require('../../assets/images/tileset.png');
 require('../../assets/images/play.png');
+require('../../assets/images/credits.png');
 
 export default class LoadingScene extends Phaser.Scene {
     constructor (config, key = 'Loading') {
