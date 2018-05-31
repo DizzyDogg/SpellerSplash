@@ -1,0 +1,7 @@
+#!/usr/bin/env perl
+
+use strict;
+use warnings;
+use XML::Simple qw(XMLin);
+warn "Paste XML below, and then hit CTRL-D when done...\n";
+my $xml = join "", <STDIN>; my $ref = XMLin $xml; foreach my $l ("A".."Z") { my $o = $ref->{SubTexture}->{"letter_$l.png"}; print qq[    },{\n        "filename": "letter_$l",\n        "frame": {"x":$o->{x},"y":$o->{y},"w":$o->{width},"h":$o->{height}},\n        "rotated": false,\n        "trimmed": true,\n        "spriteSourceSize": {"x":0,"y":0,"w":256,"h":256},\n        "sourceSize": {"w":256,"h":256}\n];}
