@@ -1,5 +1,9 @@
 export default class WordChecker {
-    constructor (word) {
+    constructor (word, scene) {
+        if (scene instanceof Phaser.Scene) {
+            this.scene = scene; // store our scene
+            this.events = Phaser.Events ? new Phaser.Events.EventEmitter() : new Phaser.EventEmitter(); // so we can emit a keypress event
+        }
         this.word = word;
         this.progress = 0;
         this.fails = 0;
@@ -9,10 +13,10 @@ export default class WordChecker {
         let actualLetter = this.word.charAt(this.progress);
         if (actualLetter.match(letter)) {
             this.progress++;
-            this.events.emit('guessCorrect', get_word_progress());
+            this.events.emit('guessCorrect', this.get_word_progress());
         }
         else {
-            this.events.emit('guessFail', get_word_progress());
+            this.events.emit('guessFail', this.get_word_progress());
             this.fails++;
         }
     }
@@ -30,7 +34,7 @@ export default class WordChecker {
         let wordSoFar = this.word.substring(0, this.progress);
         //Should I be adding underscores for the still unknown letters?
         for (unknowns; unknowns > 0; unknowns--) {
-            wordSoFar + '_';
+            wordSoFar = wordSoFar + '_';
         }
         return wordSoFar;
     }

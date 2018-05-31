@@ -1,4 +1,5 @@
 import SelectLetter from '../interfaces/select-letter';
+import WordChecker from '../core/word-checker';
 
 export default class PlayGameScene extends Phaser.Scene {
     constructor (config, key = 'PlayGame') {
@@ -34,6 +35,7 @@ export default class PlayGameScene extends Phaser.Scene {
 
     init (data) {
         this.selectLetter = new SelectLetter(this);
+        this.wordChecker = new WordChecker('kitchen',this);
         this.grade = data.grade;
     }
 
@@ -83,7 +85,15 @@ export default class PlayGameScene extends Phaser.Scene {
 
         this.selectLetter.events.on('keypress', (key) => {
             console.log(key);
+            this.wordChecker.guess(key);
         });
+        this.wordChecker.events.on('guessCorrect', (wordSoFar) => {
+            console.log("correct: " + wordSoFar);
+        });
+        this.wordChecker.events.on('guessFail', (wordSoFar) => {
+            console.log("fail: " + wordSoFar);
+        });
+
         let audioButton = this.make.image({ x: this.sys.game.config.width - 50, y: 50, key: 'audio_button' });
         let defButton = this.make.image({ x: this.sys.game.config.width - 150, y: 50, key: 'def_button' });
         audioButton.setInteractive();
