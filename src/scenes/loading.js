@@ -12,6 +12,8 @@
 // require('../../assets/images/tileset.png');
 require('../../assets/images/play.png');
 require('../../assets/images/credits.png');
+require('../../assets/spritesheets/blue_letters.png');
+require('../../assets/spritesheets/blue_letters.xml');
 
 export default class LoadingScene extends Phaser.Scene {
     constructor (config, key = 'Loading') {
