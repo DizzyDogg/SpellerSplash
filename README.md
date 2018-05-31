@@ -1,4 +1,4 @@
-# new-phaser-project
+# Speller Splash
 My ongoing effort to create a nice starting point for Phaser.js games...
 
 IMPORTANT! This report contains several dot files. Do not clone this repo and just do a simple cp over to a new repo or you will likey miss those files.
@@ -14,6 +14,7 @@ Supports:
 ## Prereqs
 - make
 - Node.js - https://nodejs.org/en/
+- Andriod Studio (for capacitor mobile andriod development)
 
 ## Setup and running webpack dev server via make
 - ```make start```
