@@ -118,7 +118,7 @@ export default class PlayGameScene extends Phaser.Scene {
         });
         defButton.setInteractive();
         defButton.on('pointerdown', () => {
-            this.wordnik('definition',myWord);
+            this.wordnik('definition',this.wordChecker.get_word());
         });
         this.wordDefinition = this.add.text( 10, this.sys.game.config.height-80, '', {fontFamily: 'Arial', fontSize: 20, color: '#f00'});
         this.registry.events.on('changedata', this.setDef, this);
