@@ -15,6 +15,9 @@ stop:
 $(ANDROID_APP_IML):
 	npx cap add android
 
+clean_android:
+	rm -rf android
+
 run_android: dist $(ANDROID_APP_IML)
 	npx cap copy android
 	npx cap open android
@@ -53,4 +56,4 @@ INSTALL_OSX:
 	@echo Installing npm ...
 	@which npm || brew install node
 
-.PHONY: all start stop dist dist_compressed node_modules clean run_android
+.PHONY: all start stop dist dist_compressed node_modules clean run_android clean_android
