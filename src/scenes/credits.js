@@ -57,8 +57,8 @@ export default class CreditsScene extends Phaser.Scene {
             'BACK',
             {fontFamily: 'Arial', fontSize: 32, color: '#f00'}
         ).setOrigin(0.5);
-        creditsTitle.setInteractive();
-        creditsTitle.on('pointerdown', () => {
+        backButton.setInteractive();
+        backButton.on('pointerdown', () => {
             this.input.stopPropagation();
             this.scene.start('MainMenu');
         });
