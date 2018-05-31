@@ -41,7 +41,7 @@ export default class PlayGameScene extends Phaser.Scene {
         let apiKey = '&api_key=45ac016abb9c08d154008021412018f92ba8ecb481d9fb74c';
         let apiBaseURL = "https://api.wordnik.com/v4/word.json/"+word;
         if (apiType === 'definition') {
-            if (this.sys.registry.get('def-'+word) !== undefined) {
+            if (this.sys.registry.has('def-'+word)) {
                 return;
             } else {
                 this.sys.registry.set('def-'+word, '');
@@ -61,6 +61,11 @@ export default class PlayGameScene extends Phaser.Scene {
         } else {
             console.log('nothing to do');
         }
+    }
+
+    setDef (parent, key, data) {
+
+        this.wordDefinition.setText(data);
     }
 
     create () {
@@ -88,8 +93,9 @@ export default class PlayGameScene extends Phaser.Scene {
         defButton.setInteractive();
         defButton.on('pointerdown', () => {
             this.wordnik('definition',myWord);
-            console.log(this.sys.registry.get('def-'+myWord));
         });
+        this.wordDefinition = this.add.text( 10, this.sys.game.config.height-80, '', {fontFamily: 'Arial', fontSize: 20, color: '#f00'});
+        this.registry.events.on('changedata', this.setDef, this);
     }
 
     update () {
