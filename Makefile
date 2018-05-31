@@ -10,9 +10,16 @@ start: node_modules
 stop:
 	killall npm
 
-dist:
+android: dist
+	rm -rf android
+	npx cap add android
+
+dist: node_modules
 	rm -rf dist
 	npm run dist </dev/null
+
+dist_compressed: dist
+	npm run dist_compressed </dev/null
 
 node_modules: package.json $(NPM)
 	npm install
@@ -41,4 +48,4 @@ INSTALL_OSX:
 	@echo Installing npm ...
 	@which npm || brew install node
 
-.PHONY: all start stop dist node_modules clean
+.PHONY: all start stop dist dist_compressed node_modules clean

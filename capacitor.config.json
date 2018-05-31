@@ -2,5 +2,5 @@
   "appId": "com.dizzydog.speller_splash",
   "appName": "Speller Splash",
   "bundledWebRuntime": false,
-  "webDir": "www"
+  "webDir": "dist"
 }

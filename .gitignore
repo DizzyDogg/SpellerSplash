@@ -49,3 +49,6 @@ assets/json/.DS_Store
 
 # don't use package-lock for the chassis
 package-lock.json
+
+# ignore npx android build directory
+android

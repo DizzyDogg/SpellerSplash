@@ -7,6 +7,7 @@
   "scripts": {
     "start": "scripts/start.sh",
     "dist": "scripts/dist.sh",
+    "dist_compressed": "scripts/dist_compressed.sh",
     "audiosprite": "node node_modules/audiosprite/cli.js"
   },
   "repository": {
