@@ -151,11 +151,9 @@ export default class PlayGameScene extends Phaser.Scene {
         let centerX = this.sys.game.config.width / 2;
         let centerY = this.sys.game.config.height / 2;
 
-        console.log('displayWord()' + word);
         // TODO: potentially need to consider blowing away the old letters
         this.currentWord = this.wordImg.createWord(word);
         this.currentWord.setPosition(centerX, centerY - 50);
-        console.log(centerX, centerY - 50);
         this.currentWord.setScale(0.3);
     }
 
