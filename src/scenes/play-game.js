@@ -39,6 +39,7 @@ export default class PlayGameScene extends Phaser.Scene {
         this.selectLetter = new SelectLetter(this);
         this.grade = data.grade;
         this.timeLeft = 10;
+        this.won = 0;
         this.word = this.wordPicker();
         console.log('Your word is: '+this.word);
         this.wordChecker = new WordChecker(this.word,this);
@@ -80,6 +81,7 @@ export default class PlayGameScene extends Phaser.Scene {
     }
 
     showTimer () {
+        if (this.won) return;
         this.timerText.setText(this.timeLeft);
         if (this.timeLeft > 0) {
             this.time.delayedCall(1000, this.showTimer, [], this);
@@ -119,6 +121,7 @@ export default class PlayGameScene extends Phaser.Scene {
             console.log("fail: " + wordSoFar);
         });
         this.wordChecker.events.on('winWord', (word) => {
+            this.won = 1;
             console.log('You spelled ' + word + ' correctly!');
         });
 
