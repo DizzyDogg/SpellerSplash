@@ -33,8 +33,8 @@ export default class PlayGameScene extends Phaser.Scene {
     }
 
     init (data) {
-	    this.selectLetter = new SelectLetter(this);
-	    this.grade = data.grade;
+        this.selectLetter = new SelectLetter(this);
+        this.grade = data.grade;
     }
 
     wordnik(apiType, word) {
@@ -65,8 +65,8 @@ export default class PlayGameScene extends Phaser.Scene {
 
     create () {
         let myWord = 'kitchen';
-	    let centerX = this.sys.game.config.width / 2;
-    	let centerY = this.sys.game.config.height / 2;
+        let centerX = this.sys.game.config.width / 2;
+        let centerY = this.sys.game.config.height / 2;
         let title = this.add.text( centerX, 100, 'Play Scene', {fontFamily: 'Arial', fontSize: 32, color: '#f00'}).setOrigin(0.5);
         let title1 = this.add.text( centerX, 200, this.grade + ' grade', {fontFamily: 'Arial', fontSize: 32, color: '#f00'}).setOrigin(0.5);
         let mainMenu = this.add.text( centerX, 300, 'Main Menu', {fontFamily: 'Arial', fontSize: 32, color: '#f00'}).setOrigin(0.5);
@@ -76,9 +76,9 @@ export default class PlayGameScene extends Phaser.Scene {
             this.scene.start('MainMenu');
         });
 
-	    this.selectLetter.events.on('keypress', (key) => {
-	        console.log(key);
-	    });
+        this.selectLetter.events.on('keypress', (key) => {
+            console.log(key);
+        });
         let audioButton = this.make.image({ x: this.sys.game.config.width - 50, y: 50, key: 'audio_button' });
         let defButton = this.make.image({ x: this.sys.game.config.width - 150, y: 50, key: 'def_button' });
         audioButton.setInteractive();
@@ -89,7 +89,6 @@ export default class PlayGameScene extends Phaser.Scene {
         defButton.on('pointerdown', () => {
             this.wordnik('definition',myWord);
             console.log(this.sys.registry.get('def-'+myWord));
-        });
     }
 
     update () {

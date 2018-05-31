@@ -17,7 +17,7 @@ export default class CreditsScene extends Phaser.Scene {
             centerX,
             100,
             'CREDITS',
-            {fontFamily: 'Arial', fontSize: 32, color: '#f00'}
+             {fontFamily: 'Arial', fontSize: 32, color: '#f00'}
         ).setOrigin(0.5);
         creditsTitle.setInteractive();
         creditsTitle.on('pointerdown', () => {
