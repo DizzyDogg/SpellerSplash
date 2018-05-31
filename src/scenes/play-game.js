@@ -1,6 +1,7 @@
 import SelectLetter from '../interfaces/select-letter';
 import WordChecker from '../core/word-checker';
 import GradeWordList from '../config/wordlist.json';
+import WordFactory from '../ui/word-factory';
 
 export default class PlayGameScene extends Phaser.Scene {
     constructor (config, key = 'PlayGame') {
@@ -38,10 +39,8 @@ export default class PlayGameScene extends Phaser.Scene {
     init (data) {
         this.selectLetter = new SelectLetter(this);
         this.grade = data.grade;
-        this.timeLeft = 10;
-        this.word = this.wordPicker();
-        console.log('Your word is: '+this.word);
-        this.wordChecker = new WordChecker(this.word,this);
+        this.timeLeft = 100;
+        this.wordImg = new WordFactory(this);
     }
 
     wordPicker() {
@@ -90,11 +89,8 @@ export default class PlayGameScene extends Phaser.Scene {
         }
     }
 
-    getRandomWord () {
-    }
-
     create () {
-        let myWord = this.word;
+        this.newWord();
         let centerX = this.sys.game.config.width / 2;
         let centerY = this.sys.game.config.height / 2;
         let title = this.add.text( centerX, 100, 'Play Scene', {fontFamily: 'Arial', fontSize: 32, color: '#f00'}).setOrigin(0.5);
@@ -134,6 +130,27 @@ export default class PlayGameScene extends Phaser.Scene {
         });
         this.wordDefinition = this.add.text( 10, this.sys.game.config.height-80, '', {fontFamily: 'Arial', fontSize: 20, color: '#f00'});
         this.registry.events.on('changedata', this.setDef, this);
+    }
+    
+    newWord () {
+        let word = this.wordPicker();
+        console.log('Your word is: '+ word);
+        this.wordChecker = new WordChecker(word, this);
+
+        let progress = this.wordChecker.get_word_progress();
+        this.displayWord(progress);
+    }
+
+    displayWord (word) {
+        let centerX = this.sys.game.config.width / 2;
+        let centerY = this.sys.game.config.height / 2;
+
+        console.log('displayWord()' + word);
+        // TODO: potentially need to consider blowing away the old letters
+        this.currentWord = this.wordImg.createWord(word);
+        this.currentWord.setPosition(this.centerX, this.centerY - 50);
+        console.log(centerX, centerY - 50);
+        this.currentWord.setScale(0.3);
     }
 
     update () {

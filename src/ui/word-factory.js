@@ -5,6 +5,7 @@ export default class WordFactory {
     }
 
     createWord (word) {
+        console.log('i am in createWord: ' + word);
         let container = this.scene.add.container();
         let letters = word.toUpperCase().split('');
         let x_pos = -(letters.length - 1)/2 * 256;
