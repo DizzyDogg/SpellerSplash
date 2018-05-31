@@ -5,7 +5,7 @@ export default class WordChecker {
         this.fails = 0;
     }
 
-    guess_letter (letter) {
+    guess (letter) {
         let actualLetter = this.word.charAt(this.progress);
         if (actualLetter.match(letter)) {
             this.progress++;
@@ -29,7 +29,7 @@ export default class WordChecker {
         let unknowns = this.word.length - this.progress;
         let wordSoFar = this.word.substring(0, this.progress);
         //Should I be adding underscores for the still unknown letters?
-        for (unknowns > 0; unknowns--) {
+        for (unknowns; unknowns > 0; unknowns--) {
             wordSoFar + '_';
         }
         return wordSoFar;
