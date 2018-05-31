@@ -88,7 +88,7 @@ export default class PlayGameScene extends Phaser.Scene {
         let title = this.add.text( centerX, 100, 'Play Scene', {fontFamily: 'Arial', fontSize: 32, color: '#f00'}).setOrigin(0.5);
         let title1 = this.add.text( centerX, 200, this.grade + ' grade', {fontFamily: 'Arial', fontSize: 32, color: '#f00'}).setOrigin(0.5);
         let mainMenu = this.add.text( centerX, 300, 'Main Menu', {fontFamily: 'Arial', fontSize: 32, color: '#f00'}).setOrigin(0.5);
-        let timeLeft = 60;
+        let timeLeft = 10;
         let timerText = this.add.text( 20, 20, "Loading", {fontFamily: 'Arial', fontSize: 32, color: '#f00'} );
         this.showTimer(timerText, timeLeft);
         mainMenu.setInteractive();
