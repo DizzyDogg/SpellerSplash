@@ -38,6 +38,7 @@ export default class PlayGameScene extends Phaser.Scene {
         this.selectLetter = new SelectLetter(this);
         this.wordChecker = new WordChecker('kitchen',this);
         this.grade = data.grade;
+        this.timeLeft = 10;
     }
 
     wordnik(apiType, word) {
@@ -71,14 +72,15 @@ export default class PlayGameScene extends Phaser.Scene {
         this.wordDefinition.setText(data);
     }
 
-    showTimer (textObj, secondsLeft) {
-        if (secondsLeft > 0) {
-            this.time.delayedCall(1000, this.showTimer, [textObj, secondsLeft-1], this);
+    showTimer (textObj) {
+        textObj.setText(this.timeLeft);
+        if (this.timeLeft > 0) {
+            this.time.delayedCall(1000, this.showTimer, [textObj], this);
+            this.timeLeft--;
         }
         else {
             this.sound.play('loser');
         }
-        textObj.setText(secondsLeft);
     }
 
     create () {
@@ -88,9 +90,8 @@ export default class PlayGameScene extends Phaser.Scene {
         let title = this.add.text( centerX, 100, 'Play Scene', {fontFamily: 'Arial', fontSize: 32, color: '#f00'}).setOrigin(0.5);
         let title1 = this.add.text( centerX, 200, this.grade + ' grade', {fontFamily: 'Arial', fontSize: 32, color: '#f00'}).setOrigin(0.5);
         let mainMenu = this.add.text( centerX, 300, 'Main Menu', {fontFamily: 'Arial', fontSize: 32, color: '#f00'}).setOrigin(0.5);
-        let timeLeft = 10;
         let timerText = this.add.text( 20, 20, "Loading", {fontFamily: 'Arial', fontSize: 32, color: '#f00'} );
-        this.showTimer(timerText, timeLeft);
+        this.showTimer(timerText);
         mainMenu.setInteractive();
         mainMenu.on('pointerdown', () => {
             this.input.stopPropagation();
