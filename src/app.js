@@ -9,6 +9,7 @@ import CreditsScene from './scenes/credits.js';
 import LoadingScene from './scenes/loading.js';
 import MainMenuScene from './scenes/main-menu.js';
 import PlayGameScene from './scenes/play-game.js';
+import GradeSelectScene from './scenes/grade-select.js';
 
 var gameConfig = {
     type: Phaser.AUTO,
@@ -21,7 +22,7 @@ var gameConfig = {
             //debug: true, // enable to see physics bodies outlined
         }
     },
-    scene: [LoadingScene, MainMenuScene, PlayGameScene, CreditsScene]
+    scene: [LoadingScene, MainMenuScene, PlayGameScene, CreditsScene, GradeSelectScene]
 }
 
 let game = new Phaser.Game(gameConfig);
