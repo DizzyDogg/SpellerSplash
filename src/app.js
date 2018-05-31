@@ -5,10 +5,10 @@ import 'webfontloader';
 require('./index.html'); // so we get it in the dist
 
 // import scenes
+import CreditsScene from './scenes/credits.js';
 import LoadingScene from './scenes/loading.js';
 import MainMenuScene from './scenes/main-menu.js';
 import PlayGameScene from './scenes/play-game.js';
-import CreditsScene from './scenes/credits.js';
 
 var gameConfig = {
     type: Phaser.AUTO,
