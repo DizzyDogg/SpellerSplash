@@ -89,6 +89,7 @@ export default class PlayGameScene extends Phaser.Scene {
         defButton.on('pointerdown', () => {
             this.wordnik('definition',myWord);
             console.log(this.sys.registry.get('def-'+myWord));
+        });
     }
 
     update () {
