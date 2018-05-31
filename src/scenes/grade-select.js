@@ -25,7 +25,7 @@ export default class GradeSelectScene extends Phaser.Scene {
 		{ 'text': 'Ninth Grade', 'height': 500, 'gradeNumber': 9 },
 	];
 
-	grades.forEach(function(element) {
+	grades.forEach((element) => {
 		element.button = this.add.text( centerX, element.height, element.text, {fontFamily: 'Arial', fontSize: 32, color: '#f00'}
 		).setOrigin(0.5);
 		element.button.setInteractive();
