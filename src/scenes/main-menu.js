@@ -1,3 +1,5 @@
+import WordFactory from '../ui/word-factory';
+
 export default class MainMenuScene extends Phaser.Scene {
     constructor (config, key = 'MainMenu') {
         super({ key: key });
@@ -13,35 +15,24 @@ export default class MainMenuScene extends Phaser.Scene {
     create () {
         this.CENTERX = this.sys.game.config.width / 2;
         this.CENTERY = this.sys.game.config.height / 2;
-        var creditsButton = this.make.image({
-            x: this.CENTERX,
-            y: this.CENTERY-100,
-            key: 'credits_button'
-        });
-        creditsButton.setInteractive();
-        creditsButton.on('pointerdown', () => {
-            this.input.stopPropagation();
-            this.scene.start('Credits');
-        });
 
-        var playButton = this.make.image({
-            x: this.CENTERX,
-            y: this.CENTERY+100,
-            key: 'play_button'
-        });
+        this.makeWord = new WordFactory(this);
+        let playButton = this.makeWord.createWord('play');
+        playButton.setPosition(this.CENTERX, this.CENTERY);
+        playButton.setScale(0.5);
         playButton.setInteractive();
         playButton.on('pointerdown', () => {
             this.input.stopPropagation();
             this.scene.start('GradeSelect');
         });
 
-        var testLetter = this.make.image({
-            x: this.CENTERX,
-            y: this.CENTERY,
-            key: 'letters',
-            frame: 'letter_B',
-            scale: 0.25
+        let creditsButton = this.makeWord.createWord('credits');
+        creditsButton.setPosition(this.CENTERX, this.CENTERY+250);
+        creditsButton.setScale(0.125);
+        creditsButton.setInteractive();
+        creditsButton.on('pointerdown', () => {
+            this.input.stopPropagation();
+            this.scene.start('Credits');
         });
-        testLetter.setInteractive();
     }
 };

@@ -1,3 +1,5 @@
+import WordFactory from '../ui/word-factory';
+
 export default class CreditsScene extends Phaser.Scene {
     constructor (config, key = 'Credits') {
         super({ key: key });
@@ -10,22 +12,15 @@ export default class CreditsScene extends Phaser.Scene {
     }
 
     create () {
-        var centerX = this.sys.game.config.width / 2;
-        var centerY = this.sys.game.config.height / 2;
+        let centerX = this.sys.game.config.width / 2;
+        let centerY = this.sys.game.config.height / 2;
 
-        var creditsTitle = this.add.text(
-            centerX,
-            100,
-            'CREDITS',
-             {fontFamily: 'Arial', fontSize: 32, color: '#f00'}
-        ).setOrigin(0.5);
-        creditsTitle.setInteractive();
-        creditsTitle.on('pointerdown', () => {
-            this.input.stopPropagation();
-            this.scene.start('MainMenu');
-        });
+        this.makeWord = new WordFactory(this);
+        let title = this.makeWord.createWord('credits');
+        title.setPosition(centerX, 100);
+        title.setScale(0.25);
 
-        var kenneyLogo = this.add.image(centerX, 200, 'kenney-logo');
+        let kenneyLogo = this.add.image(centerX, 200, 'kenney-logo');
         kenneyLogo.setInteractive();
         kenneyLogo.on('pointerdown', () => {
             this.input.stopPropagation();
@@ -34,7 +29,7 @@ export default class CreditsScene extends Phaser.Scene {
             window.open('https://kenney.nl', '_system');
         })
 
-        var phaserLogo = this.add.image(centerX, 300, 'phaser3-logo');
+        let phaserLogo = this.add.image(centerX, 300, 'phaser3-logo');
         phaserLogo.setScale(0.5);
         phaserLogo.setInteractive();
         phaserLogo.on('pointerdown', () => {
@@ -44,19 +39,16 @@ export default class CreditsScene extends Phaser.Scene {
             window.open('https://phaser.io', '_system');
         })
 
-        var worknikLogo = this.add.image(centerX, 400, 'wordnik-logo');
+        let worknikLogo = this.add.image(centerX, 400, 'wordnik-logo');
         worknikLogo.setInteractive();
         worknikLogo.on('pointerdown', () => {
             this.input.stopPropagation();
             window.open('https://www.wordnik.com/', '_system');
         })
 
-        var backButton = this.add.text(
-            centerX,
-            500,
-            'BACK',
-            {fontFamily: 'Arial', fontSize: 32, color: '#f00'}
-        ).setOrigin(0.5);
+        let backButton = this.makeWord.createWord('back');
+        backButton.setPosition(centerX, 500);
+        backButton.setScale(0.25);
         backButton.setInteractive();
         backButton.on('pointerdown', () => {
             this.input.stopPropagation();

@@ -15,7 +15,8 @@ export default class WordFactory {
             letterImgs.push(letterImg);
             x_pos += 256;
         });
-        container.add(letterImgs)
+        container.add(letterImgs);
+        container.setSize(256 * letters.length, 256);
         
         return container;
     }
