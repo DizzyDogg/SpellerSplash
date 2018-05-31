@@ -39,7 +39,6 @@ export default class PlayGameScene extends Phaser.Scene {
         this.selectLetter = new SelectLetter(this);
         this.grade = data.grade;
         this.timeLeft = 100;
-        this.wordImg = new WordFactory(this);
         this.won = 0;
     }
 
@@ -91,6 +90,7 @@ export default class PlayGameScene extends Phaser.Scene {
     }
 
     create () {
+        this.wordImg = new WordFactory(this);
         this.newWord();
         let centerX = this.sys.game.config.width / 2;
         let centerY = this.sys.game.config.height / 2;
@@ -131,6 +131,7 @@ export default class PlayGameScene extends Phaser.Scene {
 
         this.wordChecker.events.on('guessCorrect', (wordSoFar) => {
             console.log("correct: " + wordSoFar);
+            this.displayWord();
         });
         this.wordChecker.events.on('guessFail', (wordSoFar) => {
             console.log("fail: " + wordSoFar);
@@ -145,7 +146,8 @@ export default class PlayGameScene extends Phaser.Scene {
         this.displayWord(progress);
     }
 
-    displayWord (word) {
+    displayWord () {
+        let word = this.wordChecker.get_word_progress();
         let centerX = this.sys.game.config.width / 2;
         let centerY = this.sys.game.config.height / 2;
 
