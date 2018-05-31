@@ -30,6 +30,7 @@ dist_compressed: dist
 	npm run dist_compressed </dev/null
 
 node_modules: package.json $(NPM)
+	rpm package-lock.json   
 	npm install
 
 clean:

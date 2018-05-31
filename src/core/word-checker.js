@@ -2,7 +2,7 @@ export default class WordChecker {
     constructor (word, scene) {
         if (scene instanceof Phaser.Scene) {
             this.scene = scene; // store our scene
-            this.events = Phaser.Events ? new Phaser.Events.EventEmitter() : new Phaser.EventEmitter(); // so we can emit a keypress event
+            this.events = new Phaser.Events.EventEmitter(); // so we can emit a keypress event
         }
         this.word = word;
         this.progress = 0;
