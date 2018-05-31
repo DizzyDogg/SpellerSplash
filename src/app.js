@@ -4,6 +4,8 @@ import 'webfontloader';
 
 require('./index.html'); // so we get it in the dist
 
+import { Plugins } from '@capacitor/core';
+
 // import scenes
 import CreditsScene from './scenes/credits.js';
 import LoadingScene from './scenes/loading.js';
@@ -25,4 +27,19 @@ var gameConfig = {
     scene: [LoadingScene, MainMenuScene, PlayGameScene, CreditsScene, GradeSelectScene]
 }
 
-let game = new Phaser.Game(gameConfig);
+const { StatusBar, SplashScreen } = Plugins;
+
+export class Game extends Phaser.Game {
+
+    constructor(config) {
+  
+        super(config);
+      
+        StatusBar.hide();
+        SplashScreen.hide();
+  
+    }
+  
+}
+
+let game = new Game(gameConfig);
