@@ -5,9 +5,10 @@ import 'webfontloader';
 require('./index.html'); // so we get it in the dist
 
 // import scenes
-import LoadingScene from './scenes/loading';
-import MainMenuScene from './scenes/main-menu';
-import PlayGameScene from './scenes/play-game';
+import LoadingScene from './scenes/loading.js';
+import MainMenuScene from './scenes/main-menu.js';
+import PlayGameScene from './scenes/play-game.js';
+import CreditsScene from './scenes/credits.js';
 
 var gameConfig = {
     type: Phaser.AUTO,
@@ -20,7 +21,7 @@ var gameConfig = {
             //debug: true, // enable to see physics bodies outlined
         }
     },
-    scene: [LoadingScene, MainMenuScene, PlayGameScene]
+    scene: [LoadingScene, MainMenuScene, PlayGameScene, CreditsScene]
 }
 
 let game = new Phaser.Game(gameConfig);
