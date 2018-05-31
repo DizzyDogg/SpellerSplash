@@ -30,11 +30,11 @@ dist_compressed: dist
 	npm run dist_compressed </dev/null
 
 node_modules: package.json $(NPM)
-	rm -f package-lock.json
 	npm install
 
 clean:
 	rm -rf node_modules
+	rm -f package-lock.json   
 
 $(NPM):
 	@echo "Need to install npm!"
