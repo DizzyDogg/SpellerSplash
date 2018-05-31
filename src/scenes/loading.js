@@ -13,7 +13,7 @@
 require('../../assets/images/play.png');
 require('../../assets/images/credits.png');
 require('../../assets/spritesheets/blue_letters.png');
-//require('../../assets/spritesheets/blue_letters.xml');
+require('../../assets/spritesheets/blue_letters.json');
 require('../../assets/images/phaser3-logo.png');
 
 export default class LoadingScene extends Phaser.Scene {

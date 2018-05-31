@@ -7,6 +7,7 @@ export default class MainMenuScene extends Phaser.Scene {
         // load all the resources required for this scene before using them
         this.load.image('play_button', 'play.png');
         this.load.image('credits_button', 'credits.png');
+        this.load.atlas('letters', 'blue_letters.png', 'blue_letters.json');
     }
 
     create () {
@@ -33,5 +34,14 @@ export default class MainMenuScene extends Phaser.Scene {
             this.input.stopPropagation();
             this.scene.start('GradeSelect');
         });
+
+        var testLetter = this.make.image({
+            x: this.CENTERX,
+            y: this.CENTERY,
+            key: 'letters',
+            frame: 'letter_B',
+            scale: 0.25
+        });
+        testLetter.setInteractive();
     }
 };
